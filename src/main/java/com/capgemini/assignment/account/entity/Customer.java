@@ -2,13 +2,16 @@ package com.capgemini.assignment.account.entity;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import org.hibernate.annotations.GenericGenerator;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +32,7 @@ public class Customer {
 
 	private String name;
 	private String surname;
-	
-	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+	@JsonIgnore
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private  List<Account> accounts;
 }
